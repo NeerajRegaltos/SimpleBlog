@@ -16,21 +16,24 @@
 </head>
 
 <body style="background-color: rgb(180, 243, 150);">
-    <div class="container mt-3">
+    <div class="container mt-3" id="container">
+
         <h1 style="color: rgb(252, 177, 65);">My Blogs</h1>
+        <input type="text" placeholder="search here" id="search" onkeyup="searchHere()">
+
 
         <a href="/blogpost" class="btn btn-danger">Post Your Blog</a>
 
         <% locals.posts.reverse().forEach(post=> { %>
-            <div class=" mt-5 mb-3">
+            <div class=" mt-5 mb-3" id="titleContainer">
                 <div class="card">
 
-                    <h5 class="card-header" style="background-color: rgb(236, 227, 98);">
+                    <h5 class="card-header" style="background-color: rgb(236, 227, 98);" id="title">
                         <%= post.title %>
 
                     </h5>
                     <div class="card-body">
-                        
+
                         <p class="card-text" style="white-space: pre-line;">
                             <%= post.content %>
                         </p>
@@ -53,6 +56,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
+    <script>
+        var search = document.getElementById("search");
+        var titleContainer = document.querySelectorAll("#titleContainer");
+        var title = document.querySelectorAll("#title");
+        const searchHere = () => {
+            for (var i = 0; i < title.length; i++) {
+                if (title[i].innerText.indexOf(search.value.toUpperCase()) > -1) {
+                    titleContainer[i].style.display = "block";
+                } else {
+                    titleContainer[i].style.display = "none";
+                }
+            }
+
+        }
+
+    </script>
 
 
 </body>
